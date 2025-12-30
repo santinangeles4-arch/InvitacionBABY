@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mi Baby Shower y Revelacion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;}
+body{
+    font-family:'Comic Sans MS', Arial, sans-serif;
+    background:#fff6b8;
+    background-image: radial-gradient(#f3e48a 1px, transparent 1px);
+    background-size:20px 20px;
+    margin:0;
+    padding:0;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* ---------- SOBRE ---------- */
+#sobre{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.sobre-caja{
+    width:300px;
+    height:220px;
+    background:#fff;
+    border-radius:15px;
+    position:relative;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    border:4px solid transparent;
+    background-clip: padding-box;
+}
+
+.sobre-caja::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:18px;
+    background: linear-gradient(135deg, #ff69b4, #4db8ff);
+    z-index:-1;
+}
+
+.sobre-tapa{
+    position:absolute;
+    top:0; left:0;
+    width:100%; 
+    height:100%;
+    background:white; /* relleno blanco */
+    clip-path: polygon(0 0,100% 0,50% 50%);
+    z-index:1;
+}
+
+/* borde del triángulo */
+.sobre-tapa::before{
+    content:"";
+    position:absolute;
+    top:-4px; left:-4px;
+    width:calc(100% + 8px);
+    height:calc(100% + 8px);
+    background: linear-gradient(135deg, #fdaae2, #badff8);
+    clip-path: polygon(0 0,100% 0,50% 50%);
+    z-index:-1;
+}
+
+
+.sobre-texto{
+    position:absolute;
+    width:100%;
+    top:100px;
+    font-size:22px;
+    font-weight:bold;
+    background:linear-gradient(45deg,hsl(0, 89%, 57%),#af4dff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.boton-abrir{
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#e0f761;
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    width:60px;
+    height:60px;
+    font-size:26px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ---------- CONFETI ---------- */
+.confeti{
+    position:fixed;
+    top:-10px;
+    width:8px;
+    height:8px;
+    background:#ff69b4;
+    animation: caer 6s linear infinite;
+    opacity:0.7;
+}
+.confeti:nth-child(2){left:20%;background:#4db8ff;animation-delay:1s;}
+.confeti:nth-child(3){left:40%;background:#e8f805;animation-delay:2s;}
+.confeti:nth-child(4){left:60%;background:#ff69b4;animation-delay:3s;}
+.confeti:nth-child(5){left:80%;background:#06d629;animation-delay:4s;}
+@keyframes caer{0%{top:-10px;}100%{top:110%;}}
+
+/* ---------- INVITACIÓN ---------- */
+#invitacion{display:none;}
+
+.tarjeta{
+    max-width:720px;
+    margin:25px auto;
+    background:
+      linear-gradient(135deg,#7aee7a,#f4a5ff,#8bd9f8);
+    padding:30px 20px;
+    border-radius:30px;
+    border:10px solid #f9fd07;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
+h1{
+    font-size:30px;
+    background:linear-gradient(45deg,#f53896,#29a2f3);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:latido 2s infinite;
+}
+@keyframes latido{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+
+h2,h3{
+    background:linear-gradient(45deg,#da44da,#2ea6f7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Imágenes flotantes */
+.imagenes img{
+    width:120px;
+    margin:10px;
+    border-radius:20px;
+    border:4px solid #ffd6ea;
+    animation: flotar 3s ease-in-out infinite;
+}
+.imagenes img:nth-child(2){animation-delay:1s;}
+.imagenes img:nth-child(3){animation-delay:2s;}
+@keyframes flotar{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* -------- DATOS CON DISEÑO -------- */
+.datos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:25px 0;
+    color:#fa0505e7;
+}
+
+.dato{
+    background:rgba(255,255,255,0.85);
+    border-radius:15px;
+    padding:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    font-size:17px;
+}
+
+/* Marcos decorativos para imágenes */
+.galeria-datos{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:15px 0;
+}
+.galeria-datos img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px dashed #ffb6c1;
+    background:#fff;
+}
+
+audio{display:none;}
+
+.ubicacion iframe{
+    width:100%;
+    height:220px;
+    border:none;
+    border-radius:20px;
+    margin-top:10px;
+}
+
+footer{margin-top:15px;color:#070707;}
+
+.frase{
+    background:#8ef353;
+    color:#000;
+    padding:10px;
+    border-radius:15px;
+    margin:15px auto;
+    width:80%;
+    animation:latido 2s infinite;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    .tarjeta{margin:10px;}
+    .imagenes img{width:95px;}
+    .datos{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SOBRE -->
+<div id="sobre">
+    <div class="sobre-caja">
+        <div class="sobre-tapa"></div>
+        <div class="sobre-texto">Mi Baby Shower<br>& Revelación</div>
+        <button class="boton-abrir" onclick="abrirInvitacion()">💌</button>
+    </div>
+</div>
+
+<!-- CONFETI -->
+<div class="confeti"></div>
+<div class="confeti"></div>
+<div class="confeti"></div>
+<div class="confeti"></div>
+<div class="confeti"></div>
+
+<!-- INVITACIÓN -->
+<div id="invitacion">
+<div class="tarjeta">
+
+<h1>👶 ¡Baby Shower & Revelación! 👶</h1>
+<h2>Acompáñanos en este pequeño baby shower y asi mismo a descubrir el genero de nuestro bb</h2>
+<h2>Con mucha alegría te invitamos a celebrar</h2>
+
+<div class="imagenes">
+    <img src="papas.jpeg" alt="niño">
+    <img src="3meses.jpeg" alt="niña">
+    <img src="7meses.jpeg" alt="ambos">
+</div>
+
+<!-- Marcos decorativos cerca de los datos -->
+<div class="galeria-datos">
+    <img src="niño1.jpg" alt="">
+    <img src="niñe3.jpg" alt="">
+    <img src="niña2.jpg" alt="">
+</div>
+
+<div class="datos">
+    <div class="dato">🎉 Para celebrar la llegada de: <strong>Nuestro Bebé</strong></div>
+    <div class="dato">📅 Fecha: <strong>11 de Enero de 2026</strong></div>
+    <div class="dato">⏰ Hora: <strong>2:00 pm</strong></div>
+    <div class="dato">👨‍👩‍👦 Papás: <strong>Alma y Misael</strong></div>
+</div>
+
+<div class="frase">✨ Muy pronto sabrás si será niño 💙 o niña 💖 ✨</div>
+
+<audio id="musica" loop>
+    <source src="Mi Corazón Encantado.mp3" type="audio/mpeg">
+</audio>
+
+<div class="ubicacion">
+    <h3>📍 Ubicación</h3>
+    <p><strong>Calle Simón Salazar 308, Col. Ricardo Flores Magón, Toluca</strong></p>
+    <iframe 
+      src="https://www.google.com/maps?q=Calle+Simon+Salazar+308,+Toluca,+Estado+de+Mexico&output=embed">
+    </iframe>
+</div>
+
+<footer>
+<p>💖 ¡Te esperamos para compartir este momento tan especial! 💖</p>
+</footer>
+
+</div>
+</div>
+
+<script>
+function abrirInvitacion(){
+    document.getElementById("sobre").style.display="none";
+    document.getElementById("invitacion").style.display="block";
+    const audio = document.getElementById("musica");
+    audio.play().catch(()=>{});
+}
+</script>
+
+</body>
+</html>
